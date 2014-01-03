@@ -4,10 +4,10 @@ Crafty.c("HeroSprite",
 	{
 		Crafty.sprite(12, 20, "img/1/clotharmor.png",
 		{
-			heroReel : [ 0, 0 ]
+			HeroSpriteImg : [ 0, 0 ]
 		}, 9, 1);
 		
-		this.requires("BaseEntity, SpriteAnimation, heroReel")
+		this.requires("Actor, SpriteAnimation, HeroSpriteImg")
 		    .animate("HeroStandingSouth", 0, 0, 1)
 		    .animate("HeroWalkingSouth" , 0, 1, 2)
 		    .animate("HeroStandingNorth", 0, 2, 1)
@@ -61,7 +61,7 @@ Crafty.c("HeroSprite",
 		        	}
 		        	else
 		        	{
-		        		this.resetAnimation();
+		        		this.stop();
 		        	}
 		        }
 		    })

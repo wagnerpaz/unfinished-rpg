@@ -1,4 +1,4 @@
-Crafty.c("BaseEntity",
+Crafty.c("Actor",
 {
 	init: function()
 	{

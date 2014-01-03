@@ -4,10 +4,10 @@ Crafty.c("AntSprite",
 	{
 		Crafty.sprite(18, "img/1/ants.png",
 		{
-			antReel : [ 0, 0 ]
+			AntSpriteImg : [ 0, 0 ]
 		});
 		
-		this.requires("BaseEntity, SpriteAnimation, antReel")
+		this.requires("Actor, SpriteAnimation, AntSpriteImg")
 		    .animate("AntStandingNorth", 1, 0, 1)
 		    .animate("AntWalkingNorth" , 0, 0, 1)
 		    .animate("AntStandingSouth", 1, 1, 1)

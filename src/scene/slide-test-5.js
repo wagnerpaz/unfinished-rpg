@@ -10,16 +10,24 @@ Crafty.scene("slide-test-5", function()
 
 Crafty.scene("slide-test-5-loaded", function()
 {
-	Crafty.e("RoundMetalMBox, BoxPosition")
-	      .regBoxPosition("origin", "fill", "bottom", 65, 10)
-	      .setBoxPosition("origin")      
-	      .customMBox(["Para mover o personagem clique com o botão esquerdo mouse no local desejado"])
-	      .bind("WPMessageBoxClosed", function()
-	      {
+	
+//	Crafty.e("RoundMetalMBox, BoxPosition")
+//	      .regBoxPosition("origin", "fill", "bottom", 65, 10)
+//	      .setBoxPosition("origin")      
+//	      .customMBox(["Para mover o personagem clique com o botão esquerdo mouse no local desejado"])
+//	      .bind("WPMessageBoxClosed", function()
+//	      {
 	          //HERO
-	          var hero = Crafty.e("HeroSprite, BoxPosition, SlideAI")
+	          var hero = Crafty.e("HeroSprite, BoxPosition, WPSlide, WASDMultiway, WPRectBounds")
 	                           .regBoxPosition("origin", "center", "center")
 	                           .setBoxPosition("origin")
+	                           .wpRectBounds(20, 20, Crafty.viewport.width - 20, Crafty.viewport.height - 20, true)
+	                           .bind("OutOfBounds", function(from, dest)
+	                           {
+	                        	   this.x = from.x;
+	                        	   this.y = from.y;
+	                        	   this.slidePause();
+	                           })
 	                           ;
 	    	  
 	          //MOUSE TRACKER
@@ -43,6 +51,6 @@ Crafty.scene("slide-test-5-loaded", function()
 	                        .slideTo("target", 1);
 	                })
 	                ;
-	      })
-	      ;
+//	      })
+//	      ;
 });

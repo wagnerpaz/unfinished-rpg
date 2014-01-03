@@ -4,7 +4,12 @@ window.onload = function()
 	Crafty.canvas.init();
 	Crafty.background("#EFEFEF");
 	
-	Crafty.scene("slide-test-" + _GET("slide-test"));
+	var sceneNum = _GET("slide-test");
+	if(sceneNum === null || sceneNum === undefined)
+	{
+		sceneNum = 1;
+	}
+	Crafty.scene("slide-test-" + sceneNum);
 };
 
 /**
