@@ -2,7 +2,7 @@ Crafty.c("RoundMetalMBox",
 {
 	init: function()
 	{
-		this.requires("BaseEntity, WPMessageBox, Keyboard");
+		this.requires("Renderable, WPMessageBox, Keyboard");
 	}
 ,
 	customMBox: function(text, position)

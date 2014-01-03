@@ -1,27 +1,27 @@
-Crafty.c("SlideAI",
+Crafty.c("WPSlide",
 {
 	_x0: null,
 	_y0: null,
 	_x1: null,
-	_y1: null,
-	_f : null
+	_y1: null
 ,
 	init: function()
 	{
 		this.requires("2D")
 		    .bind("EnterFrame", function()
 		    {
-		    	if(this._f)
+		    	if(this._angle !== undefined)
 		    	{
-		    		if(Math.abs(this._f._a) < 1)
+		    		var from = {x: this._x, y: this._y};
+		    		
+		    		this.x += this._dircX;
+		    		this.y += this._dircY;
+		    		
+		    		if(this._x != from._x
+		    		|| this._y != from._y)
 		    		{
-		    			this.x += this._dircX * this._s();
-		    			this.y =  this._dircY != 0 ? this._f.y(this._x) : this._y0;
-		    		}
-		    		else
-		    		{
-		    			this.y += this._dircY * this._s();
-		    			this.x =  this._dircX != 0 ? this._f.x(this._y) : this._x0;
+		    			var dest = {x: this._x1, y: this._y1};
+		    			this.trigger("Moved", from, dest);
 		    		}
 		    		
 		    		//DEFINE QUANDO CHEGA AO FIM DA TRAGETORIA
@@ -30,9 +30,13 @@ Crafty.c("SlideAI",
 		    		||  (this._dircY > 0 && this._y1 != null && this._y > this._y1)
 		    		||  (this._dircY < 0 && this._y1 != null && this._y < this._y1) )
 		    		{
+		    			//console.log("SlideEnd");
+		    			//console.log("x: " + this._x1);
+		    			//console.log("y: " + this._y1);
+		    			
 		    			this. x = this._x1;
 		    			this. y = this._y1;
-		    			this._f = null;
+		    			this._angle = undefined;
 		    			
 		    			this.trigger("NewDirection", {x: 0, y: 0});
 		    			this.trigger("SlideEnd");
@@ -41,12 +45,7 @@ Crafty.c("SlideAI",
 		    });
 	}
 ,
-	_s: function()
-	{
-		return this._speed;
-	}
-,
-	slideTo: function(regPositionName, dest, speed)
+	slideTo: function(regPositionName, speed)
 	{
 		this._x0 = this._x;
 		this._y0 = this._y;
@@ -60,18 +59,26 @@ Crafty.c("SlideAI",
 		{
 			this._x1 = regPositionName.x;
 			this._y1 = regPositionName.y;
-			speed = dest;
 		}
 		
 		this._diffX    = this._x1 - this._x0;
 		this._diffY    = this._y1 - this._y0;
 		this._diffXAbs = Math.abs(this._diffX);
 		this._diffYAbs = Math.abs(this._diffY);
-		this._dircX    = this._diffXAbs != 0 ? this._diffX / this._diffXAbs : 0;
-		this._dircY    = this._diffYAbs != 0 ? this._diffY / this._diffYAbs : 0;
-		this._speed    = speed !== undefined ? Math.abs(speed) : 3;
 		
-		this._f = this._createLineEquationP(this._x, this._y, this._x1, this._y1);
+		//console.log("_diffX: " + this._diffX);
+		//console.log("_diffY: " + this._diffY);
+		
+		this._angle = this._toDegrees(Math.atan(1.0 * this._diffY / this._diffX));
+		this._angle = (this._diffX < 0 ? 180 : 0) + this._angle;
+		
+		this._speed = speed !== undefined ? Math.abs(speed) : 3;
+		this._dircX = this._round8(Math.cos(this._toRadians(this._angle)) * this._speed);
+		this._dircY = this._round8(Math.sin(this._toRadians(this._angle)) * this._speed);
+		
+		//console.log("_angle: " + this._angle);
+		//console.log("_dircX: " + this._dircX);
+		//console.log("_dircY: " + this._dircY);
 		
 		this.trigger("NewDirection", {x: this._dircX, y: this._dircY});
 		return this;
@@ -79,25 +86,17 @@ Crafty.c("SlideAI",
 ,
 	slideToDirection: function(angle, speed)
 	{
-		console.log("\n");
-		
 		this._angle = angle = angle % 360;
 		this._x0 = this._x;
 		this._y0 = this._y;
 		
-		console.log(angle);
-		
-		var xh = 0;
-		var yh = 90;
-		
 		this._speed = speed !== undefined ? Math.abs(speed) : 3;
-		this._dircX = angle == 0 + xh  || angle == 180 + xh ? 0 : angle > 0 + xh  && angle < 180 + xh ? 1 : -1;
-		this._dircY = angle == 0 + yh  || angle == 180 + yh ? 0 : angle > 0 + yh  && angle < 180 + yh ? 1 : -1;
+		this._dircX = this._round8(Math.cos(this._angle * (Math.PI / 180)) * this._speed);
+		this._dircY = this._round8(Math.sin(this._angle * (Math.PI / 180)) * this._speed);
 		
-		console.log("_dircX: " + this._dircX);
-		console.log("_dircY: " + this._dircY);
-		
-		this._f = this._createLineEquationA(this._x, this._y, angle + 90);
+		//console.log("_angle: " + this._angle);
+		//console.log("_dircX: " + this._dircX);
+		//console.log("_dircY: " + this._dircY);
 		
 		this.trigger("NewDirection", {x: this._dircX, y: this._dircY});
 		return this;
@@ -149,6 +148,12 @@ Crafty.c("SlideAI",
 		this.slideTo(this._retrievePosition(coordinates[0]), speed);
 	}
 ,
+	slidePause: function()
+	{
+		this._angle = undefined;
+		this.trigger("NewDirection", {x: 0, y: 0});
+	}
+,
 	_retrievePosition: function(pos)
 	{
 		if(typeof pos == 'string')
@@ -161,62 +166,19 @@ Crafty.c("SlideAI",
 		}
 	}
 ,
-	_createLineEquationA: function(x1, y1, angle)
+	_toDegrees: function(rad)
 	{
-		var a = this._calculateAngularCoeficientA(angle);
-		var b = this._calculateLinearCoeficient  (x1, y1, a);
-		
-		return this._createLineEquation(a, b);
+		return rad * (180 / Math.PI);
 	}
 ,
-	_createLineEquationP: function(x1, y1, x2, y2)
+	_toRadians: function(deg)
 	{
-		var a = this._calculateAngularCoeficientP(x1, y1, x2, y2);
-		var b = this._calculateLinearCoeficient  (x1, y1, a);
-		
-		return this._createLineEquation(a, b);
+		return deg * (Math.PI / 180);
 	}
 ,
-	_createLineEquation: function(a, b)
+	_round8: function(d)
 	{
-//		console.log("a: " + a);
-//		console.log("b: " + b);
-		
-		var f =
-		{
-			_a: a,
-			_b: b,
-			
-			y: function(x)
-			{
-				return a * x + b;
-			}
-		,
-			x: function(y)
-			{
-				return (y - b) / a;
-			}
-		,
-			a: function()
-			{
-				return a;
-			}
-		};
-		return f;
-	}
-,
-	_calculateAngularCoeficientA: function(angle)
-	{
-		return Math.tan(angle * (Math.PI / 180));
-	}
-,
-	_calculateAngularCoeficientP: function(x1, y1, x2, y2)
-	{
-		return (1.0 * (y2 - y1)) / (1.0 * (x2 - x1));
-	}
-,
-	_calculateLinearCoeficient: function(x, y, a)
-	{
-		return -1.0 * a * x + y;
+		return Math.round(d * 100000000.0) / 100000000.0;
+//		return Number(d.toFixed(8));
 	}
 });

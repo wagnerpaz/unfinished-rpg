@@ -2,8 +2,7 @@ Crafty.c("SpriteCollision",
 {
 	init: function()
 	{
-		this.requires("Collision, WiredHitBox")
-//			.collision([10, 6], [22, 6], [22, 27], [10, 27])
+		this.requires("Collision") //WiredHitBox
 		    .bind("Moved", function(from)
 	        {
 	        	var solids = this.hit("solid");
