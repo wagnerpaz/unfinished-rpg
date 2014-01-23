@@ -10,11 +10,11 @@ Crafty.scene("slide-test-3", function()
 
 Crafty.scene("slide-test-3-loaded", function()
 {
-	Crafty.e("HeroSprite, SpriteCollision, WASDMultiway, BoxPosition, solid")
+	Crafty.e("HeroActor, WASDMultiway, BoxPosition, solid")
 	      .regBoxPosition("origin", "left", "center")
 	      .setBoxPosition("origin")
 	      ;
-	Crafty.e("AntSprite, AntCollision, ArrowsMultiway, BoxPosition, solid")
+	Crafty.e("AntActor, ArrowsMultiway, BoxPosition, solid")
           .regBoxPosition("origin", "right", "center")
           .setBoxPosition("origin")
           ;

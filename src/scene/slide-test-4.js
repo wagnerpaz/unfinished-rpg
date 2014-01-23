@@ -13,7 +13,7 @@ Crafty.scene("slide-test-4", function()
 
 Crafty.scene("slide-test-4-loaded", function()
 {
-	var hero = Crafty.e("HeroSprite, BoxPosition, WPSlide")
+	var hero = Crafty.e("HeroActor, BoxPosition, WPSlide")
                      .regBoxPosition("origin", "center", "top")
                      .regBoxPosition("dest",   "center", "center")
                      .regBoxPosition("dest2",  "right" , "center")

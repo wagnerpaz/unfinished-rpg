@@ -3,14 +3,15 @@ Crafty.c("WPSlide",
 	_x0: null,
 	_y0: null,
 	_x1: null,
-	_y1: null
+	_y1: null,
+	_mvNormal: null
 ,
 	init: function()
 	{
 		this.requires("2D")
 		    .bind("EnterFrame", function()
 		    {
-		    	if(this._angle !== undefined)
+		    	if(this._angle)
 		    	{
 		    		var from = {x: this._x, y: this._y};
 		    		
@@ -25,10 +26,8 @@ Crafty.c("WPSlide",
 		    		}
 		    		
 		    		//DEFINE QUANDO CHEGA AO FIM DA TRAGETORIA
-		    		if( (this._dircX > 0 && this._x1 != null && this._x > this._x1)
-		    		||  (this._dircX < 0 && this._x1 != null && this._x < this._x1)
-		    		||  (this._dircY > 0 && this._y1 != null && this._y > this._y1)
-		    		||  (this._dircY < 0 && this._y1 != null && this._y < this._y1) )
+		    		if(this._reachedTargetX(this._x1)
+		    		&& this._reachedTargetY(this._y1))
 		    		{
 		    			//console.log("SlideEnd");
 		    			//console.log("x: " + this._x1);
@@ -41,8 +40,25 @@ Crafty.c("WPSlide",
 		    			this.trigger("NewDirection", {x: 0, y: 0});
 		    			this.trigger("SlideEnd");
 		    		}
+		    		else if(this._reachedTargetX(this._x1)
+		    		     || this._reachedTargetY(this._y1) )
+		    		{
+		    			this.slideTo({x: this._x1, y: this._y1}, this._speed);
+		    		}
 		    	}
 		    });
+	}
+,
+	_reachedTargetX: function(x1)
+	{
+		return (this._dircX > 0 && x1 != null && this._x > x1)
+		    || (this._dircX < 0 && x1 != null && this._x < x1);
+	}
+,
+	_reachedTargetY: function(y1)
+	{
+		return (this._dircY > 0 && y1 != null && this._y > y1)
+		   ||  (this._dircY < 0 && y1 != null && this._y < y1);
 	}
 ,
 	slideTo: function(regPositionName, speed)
@@ -89,6 +105,8 @@ Crafty.c("WPSlide",
 		this._angle = angle = angle % 360;
 		this._x0 = this._x;
 		this._y0 = this._y;
+		this._mvNormal = {x: angle < 90 && angle > 270 ? 1 : -1,
+		                  y: angle > 180               ? 1 : -1};
 		
 		this._speed = speed !== undefined ? Math.abs(speed) : 3;
 		this._dircX = this._round8(Math.cos(this._angle * (Math.PI / 180)) * this._speed);
@@ -179,6 +197,5 @@ Crafty.c("WPSlide",
 	_round8: function(d)
 	{
 		return Math.round(d * 100000000.0) / 100000000.0;
-//		return Number(d.toFixed(8));
 	}
 });

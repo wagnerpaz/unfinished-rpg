@@ -20,7 +20,23 @@ Crafty.scene("slide-test-1-loaded", function()
 	
 	var createRandomHero = function(speed)
 	{
-		Crafty.e("HeroSprite, BoxPosition, WPSlide")
+		Crafty.e("HeroActor, BoxPosition, WPSlide, solid")
+              .attr(createRandomPos())
+              .slideTo(createRandomPos(), speed)
+              .bind("SlideEnd", function()
+              {
+            	  this.slideTo(createRandomPos(), speed);	
+              })
+              .onHit("solid", function()
+              {
+            	  this.slideTo(createRandomPos(), speed);
+              })
+              ;
+	};
+	
+	var createRandomEnemy = function(speed)
+	{
+		Crafty.e("AntActor, BoxPosition, WPSlide, solid")
               .attr(createRandomPos())
               .slideTo(createRandomPos(), speed)
               .bind("SlideEnd", function()
@@ -30,10 +46,33 @@ Crafty.scene("slide-test-1-loaded", function()
               ;
 	};
 	
-	createRandomHero(0.5);
-	createRandomHero(1);
-	createRandomHero(1);
-	createRandomHero(0.5);
-	createRandomHero(0.5);
-	createRandomHero(1);
+	createRandomEnemy(0.5);
+	createRandomEnemy(1);
+	createRandomEnemy(1);
+	createRandomEnemy(0.5);
+	createRandomEnemy(0.5);
+	createRandomEnemy(0.5);
+	createRandomEnemy(1);
+	createRandomEnemy(1);
+	createRandomEnemy(0.5);
+	createRandomEnemy(0.5);
+	createRandomEnemy(1);
+	createRandomEnemy(0.5);
+	createRandomEnemy(0.5);
+	createRandomEnemy(0.5);
+	createRandomEnemy(1);
+	createRandomEnemy(1);
+	createRandomEnemy(0.5);
+	createRandomEnemy(0.5);
+	createRandomEnemy(0.5);
+	createRandomEnemy(1);
+	createRandomEnemy(1);
+	createRandomEnemy(0.5);
+	createRandomEnemy(0.5);
+	createRandomEnemy(0.5);
+	createRandomEnemy(1);
+	createRandomEnemy(1);
+	createRandomEnemy(0.5);
+	createRandomEnemy(0.5);
+	createRandomHero(3);
 });

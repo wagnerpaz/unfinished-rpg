@@ -4,30 +4,53 @@
 	<meta charset="utf-8">
 	<title>Unfinished RPG</title>
 	
+	<script type="text/javascript" src="tiled/map1.js"></script>
+	
 	<script type="text/javascript" src="lib/crafty.js"></script>
 	<script type="text/javascript" src="lib/wpmessagebox.js"></script>
+	
+	<script type="text/javascript" src="lib/modules/create_mocks_module.js"></script>
+	<script type="text/javascript" src="lib/tiledmapbuilder.js"></script>   
 
-	<script type="text/javascript" src="src/base/control/wasd-multiway.js"></script>
-	<script type="text/javascript" src="src/base/control/arrows-multiway.js"></script>
-	<script type="text/javascript" src="src/base/sprite-collision.js"></script>
-	<script type="text/javascript" src="src/base/rain.js"></script>
-	<script type="text/javascript" src="src/base/util/box-position.js"></script>
-	<script type="text/javascript" src="src/base/wp-rect-bounds.js"></script>
-	<script type="text/javascript" src="src/base/wp-slide.js"></script>
+	<script type="text/javascript" src="src/component/control/wasd-multiway.js"></script>
+	<script type="text/javascript" src="src/component/control/arrows-multiway.js"></script>
+	<script type="text/javascript" src="src/component/control/ad-twoway.js"></script>
+	<script type="text/javascript" src="src/component/control/arrows-twoway.js"></script>
+	<script type="text/javascript" src="src/component/control/wp-slide.js"></script>
+	<script type="text/javascript" src="src/component/collision/sprite-collision.js"></script>
+	<script type="text/javascript" src="src/component/collision/wp-rect-bounds.js"></script>
+	<script type="text/javascript" src="src/component/util/box-position.js"></script>
+	<script type="text/javascript" src="src/component/rain.js"></script>
+	<script type="text/javascript" src="src/component/util/grid2D.js"></script>
 	
 	<script type="text/javascript" src="src/scene/slide-test-1.js"></script>
 	<script type="text/javascript" src="src/scene/slide-test-2.js"></script>
 	<script type="text/javascript" src="src/scene/slide-test-3.js"></script>
 	<script type="text/javascript" src="src/scene/slide-test-4.js"></script>
 	<script type="text/javascript" src="src/scene/slide-test-5.js"></script>
+	<script type="text/javascript" src="src/scene/slide-test-6.js"></script>
 	
-	<script type="text/javascript" src="src/actor/hero-sprite.js"></script>
-	<script type="text/javascript" src="src/actor/ant-sprite.js"></script>
-	<script type="text/javascript" src="src/actor/ant-collision.js"></script>
-	
+	<script type="text/javascript" src="src/actor/sprite/hero-sprite.js"></script>
+	<script type="text/javascript" src="src/actor/sprite/ant-sprite.js"></script>
+	<script type="text/javascript" src="src/actor/collision/ant-collision.js"></script>
 	<script type="text/javascript" src="src/actor/actor.js"></script>
+	<script type="text/javascript" src="src/actor/hero-actor.js"></script>
+	<script type="text/javascript" src="src/actor/ant-actor.js"></script>
+	
 	<script type="text/javascript" src="src/message-box/round-metal-mbox.js"></script>
 	<script type="text/javascript" src="src/message-box/dark-mbox.js"></script>
+	
+	<script type="text/javascript" src="src/scene/sparring-scorer.js"></script>
+	
+	<!-- PONG -->
+	<script type="text/javascript" src="src/actor/bar1-actor.js"></script>
+	<script type="text/javascript" src="src/actor/bar2-actor.js"></script>
+	<script type="text/javascript" src="src/actor/ball-actor.js"></script>
+	<script type="text/javascript" src="src/actor/sprite/bar1-sprite.js"></script>
+	<script type="text/javascript" src="src/actor/sprite/bar2-sprite.js"></script>
+	<script type="text/javascript" src="src/actor/sprite/ball-sprite.js"></script>
+	<script type="text/javascript" src="src/scene/pong-game.js"></script>
+	<script type="text/javascript" src="src/actor/control/ai/ball-control.js"></script>
 	
 	<script type="text/javascript" src="src/game.js"></script>
 	
@@ -39,10 +62,13 @@
 	</style>
 </head>
 <body>
-	<a href="index.html?slide-test=1">Test 1</a>
-	<a href="index.html?slide-test=2">Test 2</a>
-	<a href="index.html?slide-test=3">Test 3</a>
-	<a href="index.html?slide-test=4">Test 4</a>
-	<a href="index.html?slide-test=5">Test 5</a>
+	<a href="index.html?scene=slide-test-1">Test 1</a>
+	<a href="index.html?scene=slide-test-2">Test 2</a>
+	<a href="index.html?scene=slide-test-3">Test 3</a>
+	<a href="index.html?scene=slide-test-4">Test 4</a>
+	<a href="index.html?scene=slide-test-5">Test 5</a>
+	<a href="index.html?scene=slide-test-5">Test 6</a>
+	<a href="index.html?scene=pong-game">Pong</a>
+	<a href="index.html?scene=sparring-scorer">Sparring Scorer</a>
 </body>
 </html>

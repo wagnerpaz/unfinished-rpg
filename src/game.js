@@ -1,15 +1,18 @@
 window.onload = function()
 {
-	Crafty.init(600, 600);
+//	Crafty.init(480, 416);
+	Crafty.init(200, 200);
 	Crafty.canvas.init();
 	Crafty.background("#EFEFEF");
 	
-	var sceneNum = _GET("slide-test");
-    if(sceneNum === null || sceneNum === undefined)
-    {
-            sceneNum = 1;
-    }
-    Crafty.scene("slide-test-" + sceneNum);
+	var sceneName = _GET("scene");
+	if(sceneName === null
+	|| sceneName === undefined)
+	{
+		sceneName = "slide-test-1";
+	}
+	
+	Crafty.scene(sceneName);
 };
 
 /**

@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.0" orientation="orthogonal" width="25" height="25" tilewidth="32" tileheight="32">
+ <tileset firstgid="1" name="browserquest" tilewidth="32" tileheight="32">
+  <image source="../img/1/tilesheet.png" width="320" height="1568"/>
+ </tileset>
+ <layer name="Camada de Tiles 1" width="25" height="25">
+  <data encoding="base64" compression="zlib">
+   eJzjYGBg4CATEwvINZ9UO9gGwB9CdLCD3vGBz0+D2R/sdLBjKOePwWgHLM8OJn+MglEwCkbBUAEAGn8GKA==
+  </data>
+ </layer>
+ <layer name="Camada de Tiles 3" width="25" height="25">
+  <data encoding="base64" compression="zlib">
+   eJxjYBh+IJlG5uYg4dxRO4i2o5xGdoyCUTAKRsEoGAUjGQAA0IMHMg==
+  </data>
+ </layer>
+ <layer name="Camada de Tiles 2" width="25" height="25">
+  <data encoding="base64" compression="zlib">
+   eJzt0zEOgUEQhuH5SxIUJChR4gC0tFwFJUqUKFHR0nIVWo7iVUwjETOSbWS/5Cm2mPmSTSYjIlnkJFyKKKGMFtqGmRTSjo4Kqqihg65hJo+Co6OOBprooW+Y2ePg6PBE/+iIU6AO/aMzLoE6XhkkIkOMknAdY3ZPMA3QcWXnDTPMsfih49tt3Nn5wBIrrB0dultvQ9+fOjfs3mLn6NDdehv6tt6jJe93p2/rPcbExMT8U560Yhjs
+  </data>
+ </layer>
+</map>

@@ -12,7 +12,7 @@ Crafty.scene("slide-test-2-loaded", function()
 {
 	var createHero = function(i, d)
 	{
-		Crafty.e("HeroSprite, BoxPosition, WPSlide, Delay")
+		Crafty.e("Actor, HeroSprite, BoxPosition, WPSlide, Delay")
 	          .regBoxPosition("origin", "center", "center")
 	          .setBoxPosition("origin")
 	          .delay(function()

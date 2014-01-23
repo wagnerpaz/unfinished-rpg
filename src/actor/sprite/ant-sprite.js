@@ -7,7 +7,7 @@ Crafty.c("AntSprite",
 			AntSpriteImg : [ 0, 0 ]
 		});
 		
-		this.requires("Actor, SpriteAnimation, AntSpriteImg")
+		this.requires("SpriteAnimation, AntSpriteImg")
 		    .animate("AntStandingNorth", 1, 0, 1)
 		    .animate("AntWalkingNorth" , 0, 0, 1)
 		    .animate("AntStandingSouth", 1, 1, 1)

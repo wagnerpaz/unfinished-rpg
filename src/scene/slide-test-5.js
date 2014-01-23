@@ -18,7 +18,7 @@ Crafty.scene("slide-test-5-loaded", function()
 //	      .bind("WPMessageBoxClosed", function()
 //	      {
 	          //HERO
-	          var hero = Crafty.e("HeroSprite, BoxPosition, WPSlide, WASDMultiway, WPRectBounds")
+	          var hero = Crafty.e("HeroActor, BoxPosition, WPSlide, WPRectBounds, solid")
 	                           .regBoxPosition("origin", "center", "center")
 	                           .setBoxPosition("origin")
 	                           .wpRectBounds(20, 20, Crafty.viewport.width - 20, Crafty.viewport.height - 20, true)
@@ -29,6 +29,10 @@ Crafty.scene("slide-test-5-loaded", function()
 	                        	   this.slidePause();
 	                           })
 	                           ;
+	          
+	          //OBSTACLES
+	          Crafty.e("AntActor, WASDMultiway, solid")
+	                .attr({x: 50, y: 50});
 	    	  
 	          //MOUSE TRACKER
 	          Crafty.e("2D, Mouse")
@@ -38,7 +42,7 @@ Crafty.scene("slide-test-5-loaded", function()
 		              	w: Crafty.viewport.width,
 		              	h: Crafty.viewport.height
 	                })
-	                .bind("Click", function(e) 
+	                .bind("Click", function(e)
 	                {
 	                    hero.regBoxPosition("target",
 	                    		            Crafty.mousePos.x - hero._w / 2,
