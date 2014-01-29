@@ -108,9 +108,7 @@ Crafty.c("WPSlide",
 		this._mvNormal = {x: angle < 90 && angle > 270 ? 1 : -1,
 		                  y: angle > 180               ? 1 : -1};
 		
-		this._speed = speed !== undefined ? Math.abs(speed) : 3;
-		this._dircX = this._round8(Math.cos(this._angle * (Math.PI / 180)) * this._speed);
-		this._dircY = this._round8(Math.sin(this._angle * (Math.PI / 180)) * this._speed);
+		this.slideSpeed(speed !== undefined ? Math.abs(speed) : 3);
 		
 		//console.log("_angle: " + this._angle);
 		//console.log("_dircX: " + this._dircX);
@@ -118,6 +116,13 @@ Crafty.c("WPSlide",
 		
 		this.trigger("NewDirection", {x: this._dircX, y: this._dircY});
 		return this;
+	}
+,
+	slideSpeed: function(speed)
+	{
+		this._speed = speed !== undefined ? Math.abs(speed) : 3;
+		this._dircX = this._round8(Math.cos(this._angle * (Math.PI / 180)) * this._speed);
+		this._dircY = this._round8(Math.sin(this._angle * (Math.PI / 180)) * this._speed);
 	}
 ,
 	slideLoop: function(coordinates, speed, delay)

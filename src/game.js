@@ -1,7 +1,7 @@
 window.onload = function()
 {
-//	Crafty.init(480, 416);
-	Crafty.init(200, 200);
+	Crafty.init();
+	//Crafty.init(480, 416);
 	Crafty.canvas.init();
 	Crafty.background("#EFEFEF");
 	
