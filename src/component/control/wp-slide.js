@@ -121,8 +121,16 @@ Crafty.c("WPSlide",
 	slideSpeed: function(speed)
 	{
 		this._speed = speed !== undefined ? Math.abs(speed) : 3;
-		this._dircX = this._round8(Math.cos(this._angle * (Math.PI / 180)) * this._speed);
-		this._dircY = this._round8(Math.sin(this._angle * (Math.PI / 180)) * this._speed);
+		
+		var v = this.toVector(this._angle, this._speed);
+		this._dircX = v.x;
+		this._dircY = v.y;
+	}
+,
+	toVector: function(angle, length)
+	{
+		return new Crafty.math.Vector2D(this._round8(Math.cos(angle * (Math.PI / 180)) * length),
+		                                this._round8(Math.sin(angle * (Math.PI / 180)) * length));
 	}
 ,
 	slideLoop: function(coordinates, speed, delay)
